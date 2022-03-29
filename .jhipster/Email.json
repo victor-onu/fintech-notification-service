@@ -1,0 +1,40 @@
+{
+  "name": "Email",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "message",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "DeliveryStatus",
+      "fieldValues": "DELIVERED,NOT_DELIVERED"
+    },
+    {
+      "fieldName": "sender",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "receiver",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "email",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["notificationService"],
+  "microserviceName": "notificationService",
+  "clientRootFolder": "notificationService",
+  "databaseType": "sql",
+  "changelogDate": "20220329071114"
+}

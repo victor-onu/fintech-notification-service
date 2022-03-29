@@ -1,0 +1,43 @@
+
+application {
+  config {
+    baseName notificationService
+    applicationType microservice
+    packageName com.victor.notificationservice
+    serviceDiscoveryType no
+    databaseType sql
+    devDatabaseType mysql
+    prodDatabaseType mysql
+    cacheProvider no
+    buildTool maven
+    skipUserManagement true
+    serverPort 8089
+  }
+  entities *
+  service * with serviceImpl
+  dto * with mapstruct
+  paginate * with pagination
+}
+
+enum DeliveryStatus {
+  DELIVERED,
+  NOT_DELIVERED
+}
+
+
+entity Sms {
+  title String
+  message String
+  status DeliveryStatus
+  sender String
+  receiver String
+}
+
+
+entity Email {
+  title String
+  message String
+  status DeliveryStatus
+  sender String
+  receiver String
+}
