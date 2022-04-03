@@ -13,9 +13,9 @@ public class EmailDTO implements Serializable {
 
     private String title;
 
-    private String message;
+    private String responseMessage;
 
-    private DeliveryStatus status;
+    private DeliveryStatus status = DeliveryStatus.NOT_DELIVERED;
 
     private String sender;
 
@@ -37,12 +37,12 @@ public class EmailDTO implements Serializable {
         this.title = title;
     }
 
-    public String getMessage() {
-        return message;
+    public String getResponseMessage() {
+        return responseMessage;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setResponseMessage(String responseMessage) {
+        this.responseMessage = responseMessage;
     }
 
     public DeliveryStatus getStatus() {
@@ -96,7 +96,6 @@ public class EmailDTO implements Serializable {
         return "EmailDTO{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
-            ", message='" + getMessage() + "'" +
             ", status='" + getStatus() + "'" +
             ", sender='" + getSender() + "'" +
             ", receiver='" + getReceiver() + "'" +

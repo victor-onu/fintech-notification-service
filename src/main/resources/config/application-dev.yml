@@ -34,7 +34,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/notificationService?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
-    password:
+    password: password
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -60,6 +60,19 @@ spring:
     locator:
       discovery:
         enabled: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: victoronushaibu@gmail.com
+    password: xzwfiaacguffhukh
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+  application:
+    name: NOTIFICATION-SERVICE
 
 server:
   port: 8089
@@ -105,3 +118,19 @@ jhipster:
 # ===================================================================
 
 # application:
+application:
+  smtpFrom: victoronushaibu@gmail.com
+  smtpUsername: AKIAYANTAYRASJIWPE43
+  smtpPassword: BAxpj+jtkO7PGfp7549eGsUluuALT2/BdD7L61rZo5UW
+  smtpHost: email-smtp.us-east-1.amazonaws.com
+  smtpPort: 587
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: https://fintech-registry-service.herokuapp.com/eureka/
+  instance:
+    hostname: fintech-notification-server.herokuapp.com
+    non-secure-port: 80

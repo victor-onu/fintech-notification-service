@@ -1,7 +1,11 @@
 package com.victor.notificationservice.service;
 
+import com.victor.notificationservice.service.dto.AccountOwnerDTO;
 import com.victor.notificationservice.service.dto.EmailDTO;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Optional;
+import javax.mail.MessagingException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -47,4 +51,14 @@ public interface EmailService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Boolean SendMail(String fromName, String subject, String to, String mail) throws MessagingException, UnsupportedEncodingException;
+
+    String buildTemplate(HashMap<String, String> variables, String template);
+
+    Boolean sendAccountRegistrationNotificationMail(AccountOwnerDTO accountOwnerDTO);
+
+    //    void sendSimpleMail(String toEmail, String subject, String body);
+
+    Boolean sendSimpleAccountRegistrationNotificationMail(AccountOwnerDTO accountOwnerDTO);
 }

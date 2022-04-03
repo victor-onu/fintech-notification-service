@@ -74,12 +74,7 @@ class EmailResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Email createEntity(EntityManager em) {
-        Email email = new Email()
-            .title(DEFAULT_TITLE)
-            .message(DEFAULT_MESSAGE)
-            .status(DEFAULT_STATUS)
-            .sender(DEFAULT_SENDER)
-            .receiver(DEFAULT_RECEIVER);
+        Email email = new Email().title(DEFAULT_TITLE).status(DEFAULT_STATUS).sender(DEFAULT_SENDER).receiver(DEFAULT_RECEIVER);
         return email;
     }
 
@@ -90,12 +85,7 @@ class EmailResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Email createUpdatedEntity(EntityManager em) {
-        Email email = new Email()
-            .title(UPDATED_TITLE)
-            .message(UPDATED_MESSAGE)
-            .status(UPDATED_STATUS)
-            .sender(UPDATED_SENDER)
-            .receiver(UPDATED_RECEIVER);
+        Email email = new Email().title(UPDATED_TITLE).status(UPDATED_STATUS).sender(UPDATED_SENDER).receiver(UPDATED_RECEIVER);
         return email;
     }
 
@@ -119,7 +109,6 @@ class EmailResourceIT {
         assertThat(emailList).hasSize(databaseSizeBeforeCreate + 1);
         Email testEmail = emailList.get(emailList.size() - 1);
         assertThat(testEmail.getTitle()).isEqualTo(DEFAULT_TITLE);
-        assertThat(testEmail.getMessage()).isEqualTo(DEFAULT_MESSAGE);
         assertThat(testEmail.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testEmail.getSender()).isEqualTo(DEFAULT_SENDER);
         assertThat(testEmail.getReceiver()).isEqualTo(DEFAULT_RECEIVER);
@@ -201,7 +190,7 @@ class EmailResourceIT {
         Email updatedEmail = emailRepository.findById(email.getId()).get();
         // Disconnect from session so that the updates on updatedEmail are not directly saved in db
         em.detach(updatedEmail);
-        updatedEmail.title(UPDATED_TITLE).message(UPDATED_MESSAGE).status(UPDATED_STATUS).sender(UPDATED_SENDER).receiver(UPDATED_RECEIVER);
+        updatedEmail.title(UPDATED_TITLE).status(UPDATED_STATUS).sender(UPDATED_SENDER).receiver(UPDATED_RECEIVER);
         EmailDTO emailDTO = emailMapper.toDto(updatedEmail);
 
         restEmailMockMvc
@@ -217,7 +206,6 @@ class EmailResourceIT {
         assertThat(emailList).hasSize(databaseSizeBeforeUpdate);
         Email testEmail = emailList.get(emailList.size() - 1);
         assertThat(testEmail.getTitle()).isEqualTo(UPDATED_TITLE);
-        assertThat(testEmail.getMessage()).isEqualTo(UPDATED_MESSAGE);
         assertThat(testEmail.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testEmail.getSender()).isEqualTo(UPDATED_SENDER);
         assertThat(testEmail.getReceiver()).isEqualTo(UPDATED_RECEIVER);
@@ -315,7 +303,6 @@ class EmailResourceIT {
         assertThat(emailList).hasSize(databaseSizeBeforeUpdate);
         Email testEmail = emailList.get(emailList.size() - 1);
         assertThat(testEmail.getTitle()).isEqualTo(DEFAULT_TITLE);
-        assertThat(testEmail.getMessage()).isEqualTo(DEFAULT_MESSAGE);
         assertThat(testEmail.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testEmail.getSender()).isEqualTo(UPDATED_SENDER);
         assertThat(testEmail.getReceiver()).isEqualTo(DEFAULT_RECEIVER);
@@ -333,12 +320,7 @@ class EmailResourceIT {
         Email partialUpdatedEmail = new Email();
         partialUpdatedEmail.setId(email.getId());
 
-        partialUpdatedEmail
-            .title(UPDATED_TITLE)
-            .message(UPDATED_MESSAGE)
-            .status(UPDATED_STATUS)
-            .sender(UPDATED_SENDER)
-            .receiver(UPDATED_RECEIVER);
+        partialUpdatedEmail.title(UPDATED_TITLE).status(UPDATED_STATUS).sender(UPDATED_SENDER).receiver(UPDATED_RECEIVER);
 
         restEmailMockMvc
             .perform(
@@ -353,7 +335,6 @@ class EmailResourceIT {
         assertThat(emailList).hasSize(databaseSizeBeforeUpdate);
         Email testEmail = emailList.get(emailList.size() - 1);
         assertThat(testEmail.getTitle()).isEqualTo(UPDATED_TITLE);
-        assertThat(testEmail.getMessage()).isEqualTo(UPDATED_MESSAGE);
         assertThat(testEmail.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testEmail.getSender()).isEqualTo(UPDATED_SENDER);
         assertThat(testEmail.getReceiver()).isEqualTo(UPDATED_RECEIVER);

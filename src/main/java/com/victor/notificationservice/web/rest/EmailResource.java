@@ -2,6 +2,7 @@ package com.victor.notificationservice.web.rest;
 
 import com.victor.notificationservice.repository.EmailRepository;
 import com.victor.notificationservice.service.EmailService;
+import com.victor.notificationservice.service.dto.AccountOwnerDTO;
 import com.victor.notificationservice.service.dto.EmailDTO;
 import com.victor.notificationservice.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -177,5 +178,14 @@ public class EmailResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @PostMapping("emails/send-mails")
+    public ResponseEntity<Boolean> sendEmail(@RequestBody AccountOwnerDTO accountOwnerDTO) throws URISyntaxException {
+        Boolean result = emailService.sendSimpleAccountRegistrationNotificationMail(accountOwnerDTO);
+        return ResponseEntity
+            .created(new URI("/api/emails/send-emails/" + result))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.toString()))
+            .body(result);
     }
 }

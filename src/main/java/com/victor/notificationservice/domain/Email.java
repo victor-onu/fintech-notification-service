@@ -21,8 +21,8 @@ public class Email implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "message")
-    private String message;
+    @Column(name = "response_message")
+    private String responseMessage;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
@@ -62,17 +62,12 @@ public class Email implements Serializable {
         this.title = title;
     }
 
-    public String getMessage() {
-        return this.message;
+    public String getResponseMessage() {
+        return responseMessage;
     }
 
-    public Email message(String message) {
-        this.setMessage(message);
-        return this;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public void setResponseMessage(String responseMessage) {
+        this.responseMessage = responseMessage;
     }
 
     public DeliveryStatus getStatus() {
@@ -139,7 +134,6 @@ public class Email implements Serializable {
         return "Email{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
-            ", message='" + getMessage() + "'" +
             ", status='" + getStatus() + "'" +
             ", sender='" + getSender() + "'" +
             ", receiver='" + getReceiver() + "'" +
