@@ -75,7 +75,7 @@ spring:
     name: NOTIFICATION-SERVICE
 
 server:
-  port: ${PORT:8089}
+  port: ${PORT:8085}
 
 # ===================================================================
 # JHipster specific properties
