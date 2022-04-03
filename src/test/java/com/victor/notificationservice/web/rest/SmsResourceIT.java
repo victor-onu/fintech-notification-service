@@ -157,7 +157,6 @@ class SmsResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sms.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
-            .andExpect(jsonPath("$.[*].message").value(hasItem(DEFAULT_MESSAGE)))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].sender").value(hasItem(DEFAULT_SENDER)))
             .andExpect(jsonPath("$.[*].receiver").value(hasItem(DEFAULT_RECEIVER)));

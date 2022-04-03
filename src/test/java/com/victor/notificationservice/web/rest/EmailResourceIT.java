@@ -146,7 +146,6 @@ class EmailResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(email.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
-            .andExpect(jsonPath("$.[*].message").value(hasItem(DEFAULT_MESSAGE)))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].sender").value(hasItem(DEFAULT_SENDER)))
             .andExpect(jsonPath("$.[*].receiver").value(hasItem(DEFAULT_RECEIVER)));
@@ -165,7 +164,6 @@ class EmailResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(email.getId().intValue()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
-            .andExpect(jsonPath("$.message").value(DEFAULT_MESSAGE))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.sender").value(DEFAULT_SENDER))
             .andExpect(jsonPath("$.receiver").value(DEFAULT_RECEIVER));
@@ -303,7 +301,6 @@ class EmailResourceIT {
         assertThat(emailList).hasSize(databaseSizeBeforeUpdate);
         Email testEmail = emailList.get(emailList.size() - 1);
         assertThat(testEmail.getTitle()).isEqualTo(DEFAULT_TITLE);
-        assertThat(testEmail.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testEmail.getSender()).isEqualTo(UPDATED_SENDER);
         assertThat(testEmail.getReceiver()).isEqualTo(DEFAULT_RECEIVER);
     }
